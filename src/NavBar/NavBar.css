@@ -1,0 +1,22 @@
+.navContainer{
+    background-color: rgb(255, 102, 0);
+    width: 260px;
+    height: 100vh;
+}
+.navContainer h1{
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+.navContainer ul{
+    margin-bottom: 40px;
+    text-align: center;
+}
+.logOutButton{
+    position: absolute;
+    bottom:0;
+    width: auto;
+    left: 30px;
+}

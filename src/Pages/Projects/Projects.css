@@ -1,0 +1,14 @@
+.header{
+    display: flex;
+    position: relative;
+    margin-top: 20px;
+    margin-left: 70px;
+    width: 100%;
+}
+.projectBody{
+    width: 1400px;
+}
+.search{
+    position: absolute;
+    right: 0;
+}
