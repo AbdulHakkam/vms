@@ -9,9 +9,9 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 
 const columns = [
-  { id: "name", label: "Name", minWidth: 700 },
-  { id: "issuesFound", label: "Issues Found", minWidth: 200 },
-  { id: "issuesFound2", label: "Issues Found", minWidth: 170 },
+  { id: "name", label: "Name", minWidth: "40%" },
+  { id: "issuesFound", label: "Issues Found", minWidth: "50%" },
+  { id: "issuesFound2", label: "Issues Found", minWidth: "20%" },
   {
     id: "dateCreated",
     label: "Date Created",
@@ -29,6 +29,9 @@ const rows = [
   { key: "a6", name: "wso2ei-6.0.0", issuesFound: 20, dateCreated: "20-20-20" },
   { key: "a7", name: "wso2ei-6.0.0", issuesFound: 20, dateCreated: "20-20-20" },
   { key: "a8", name: "wso2ei-6.0.0", issuesFound: 20, dateCreated: "20-20-20" },
+  { key: "a9", name: "wso2ei-6.0.0", issuesFound: 20, dateCreated: "20-20-20" },
+  { key: "a10", name: "wso2ei-6.0.0", issuesFound: 20, dateCreated: "20-20-20" },
+  { key: "a11", name: "wso2ei-6.0.0", issuesFound: 20, dateCreated: "20-20-20" }
 ];
 
 export default function StickyHeadTable() {
@@ -45,8 +48,8 @@ export default function StickyHeadTable() {
   };
 
   return (
-    <Paper sx={{ width: "100%", overflow: "hidden", ml: 13, mt: 15 }}>
-      <TableContainer sx={{ maxHeight: 500 }}>
+    <Paper sx={{ width:1350 ,overflow:"hidden", ml: 10, mt: 6 }}>
+      <TableContainer sx={{ maxHeight: 600 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>

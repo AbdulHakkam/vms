@@ -8,7 +8,7 @@ const NavBar = () => {
     color: "black",
     borderRadius: 1,
     width: 200,
-    boxShadow: 3,
+    boxShadow: 1,
     textTransform:"none"
   };
   const { state, signIn, signOut } = useAuthContext();
