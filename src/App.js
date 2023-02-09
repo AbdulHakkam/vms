@@ -1,13 +1,12 @@
 import { Route, Routes } from "react-router-dom";
 import Projects from "./Pages/Projects/Projects";
-import Contact from "./Pages/Contact";
 import NavBar from "./NavBar/NavBar";
-import Error from "./Pages/Error";
 import "./App.css";
-import { useAuthContext } from "@asgardeo/auth-react";
+import ProjectDetails from "./Pages/ProjectDetails/ProjectDetails";
+//import { useAuthContext } from "@asgardeo/auth-react";
 
 function App() {
-  const { state } = useAuthContext();
+  // const { state } = useAuthContext();
   return (
     <div className="fullLayout">
       <NavBar />
@@ -22,8 +21,8 @@ function App() {
           </Routes>
         )} */}
          <Routes>
-            <Route path="/" element={<Projects item={"name"} />} />
-            <Route path="/Contact" element={<Contact />} />
+            <Route path="/" element={<Projects />} />
+            <Route path="/ProjectDetails/:projectTitle" element = {<ProjectDetails title = {"this"}/>}/>
           </Routes>
       </div>
     </div>

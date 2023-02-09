@@ -23,12 +23,12 @@ const NavBar = () => {
         </Button>
       </ul>
       <ul>
-        <Button sx={buttonStyle} component={Link} to={"/Contact"}>
+        <Button sx={buttonStyle} component={Link} to={"/"}>
           Scanners
         </Button>
       </ul>
       <ul>
-        <Button sx={buttonStyle} component={Link} to={"/Contact"}>
+        <Button sx={buttonStyle} component={Link} to={"/"}>
           Upload
         </Button>
       </ul>

@@ -47,7 +47,7 @@ const NewProjects = () => {
           <Divider/>
           <TextField label="Title" variant="outlined" size="small" sx={fieldStyle} />
           <TextField label="Confirm Title" variant="outlined" size="small" sx={fieldStyle} />
-          
+          <Button sx={buttonStyle} onClick= {handleClose}>Create</Button>
         </Box>
       </Modal>
     </div>

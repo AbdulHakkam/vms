@@ -7,6 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
+import { Link, useNavigate} from "react-router-dom";
 
 const columns = [
   { id: "name", label: "Name", minWidth: "40%" },
@@ -34,7 +35,7 @@ const rows = [
   { key: "a11", name: "wso2ei-6.0.0", issuesFound: 20, dateCreated: "20-20-20" }
 ];
 
-export default function StickyHeadTable() {
+const ProjectTable = () => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -46,10 +47,13 @@ export default function StickyHeadTable() {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-
+  const navigate  = useNavigate();
+  const handleLink = (link) =>{
+    navigate(`/ProjectDetails/${link}`);
+  }
   return (
     <Paper sx={{ width:1350 ,overflow:"hidden", ml: 10, mt: 6 }}>
-      <TableContainer sx={{ maxHeight: 600 }}>
+      <TableContainer sx={{ height: 587 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -71,11 +75,11 @@ export default function StickyHeadTable() {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.key}>
+                  <TableRow sx = {{textDecoration:"none"}}  hover role="checkbox" tabIndex={-1} key={row.key}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
-                        <TableCell key={column.id} align={column.align}>
+                        <TableCell key={column.id} align={column.align} onClick ={() => {handleLink(row.name)}}>
                           {column.format && typeof value === "number"
                             ? column.format(value)
                             : value}
@@ -100,3 +104,5 @@ export default function StickyHeadTable() {
     </Paper>
   );
 }
+
+export default ProjectTable;

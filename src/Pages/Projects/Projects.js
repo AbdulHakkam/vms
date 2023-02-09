@@ -1,5 +1,5 @@
-import ProjectTable from "./ProjectTable";
-import NewProjects from "./NewProjects";
+import NewProjects from "./Components/NewProjects";
+import ProjectTable from "./Components/ProjectTable";
 import "./Projects.css";
 import { TextField , Divider} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
