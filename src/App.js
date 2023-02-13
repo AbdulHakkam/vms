@@ -20,10 +20,13 @@ function App() {
             <Route path="/Contact" element={<Contact />} />
           </Routes>
         )} */}
-         <Routes>
-            <Route path="/" element={<Projects />} />
-            <Route path="/ProjectDetails/:projectTitle" element = {<ProjectDetails title = {"this"}/>}/>
-          </Routes>
+        <Routes>
+          <Route path="/" element={<Projects />} />
+          <Route
+            path="/ProjectDetails/:projectTitle"
+            element={<ProjectDetails title={"this"} />}
+          />
+        </Routes>
       </div>
     </div>
   );

@@ -9,14 +9,14 @@ const NavBar = () => {
     borderRadius: 1,
     width: 200,
     boxShadow: 1,
-    textTransform:"none"
+    textTransform: "none",
   };
   const { state, signIn, signOut } = useAuthContext();
 
   return (
     <nav className="navContainer">
       <h1>VMS</h1>
-      <hr style ={{color:"white" ,marginBottom:"4em"}}></hr>
+      <hr style={{ color: "white", marginBottom: "4em" }}></hr>
       <ul>
         <Button sx={buttonStyle} component={Link} to={"/"}>
           Projects
@@ -33,7 +33,15 @@ const NavBar = () => {
         </Button>
       </ul>
       <ul className="logOutButton">
-        {state.isAuthenticated? (<Button sx={buttonStyle} onClick={()=>signOut()}>Sign Out</Button>) : <Button sx={buttonStyle} onClick={()=>signIn()}>Sign In</Button>}
+        {state.isAuthenticated ? (
+          <Button sx={buttonStyle} onClick={() => signOut()}>
+            Sign Out
+          </Button>
+        ) : (
+          <Button sx={buttonStyle} onClick={() => signIn()}>
+            Sign In
+          </Button>
+        )}
       </ul>
     </nav>
   );

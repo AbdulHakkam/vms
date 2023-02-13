@@ -7,7 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import { Link, useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const columns = [
   { id: "name", label: "Name", minWidth: "40%" },
@@ -31,8 +31,18 @@ const rows = [
   { key: "a7", name: "wso2ei-6.0.0", issuesFound: 20, dateCreated: "20-20-20" },
   { key: "a8", name: "wso2ei-6.0.0", issuesFound: 20, dateCreated: "20-20-20" },
   { key: "a9", name: "wso2ei-6.0.0", issuesFound: 20, dateCreated: "20-20-20" },
-  { key: "a10", name: "wso2ei-6.0.0", issuesFound: 20, dateCreated: "20-20-20" },
-  { key: "a11", name: "wso2ei-6.0.0", issuesFound: 20, dateCreated: "20-20-20" }
+  {
+    key: "a10",
+    name: "wso2ei-6.0.0",
+    issuesFound: 20,
+    dateCreated: "20-20-20",
+  },
+  {
+    key: "a11",
+    name: "wso2ei-6.0.0",
+    issuesFound: 20,
+    dateCreated: "20-20-20",
+  },
 ];
 
 const ProjectTable = () => {
@@ -47,12 +57,12 @@ const ProjectTable = () => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  const navigate  = useNavigate();
-  const handleLink = (link) =>{
+  const navigate = useNavigate();
+  const handleLink = (link) => {
     navigate(`/ProjectDetails/${link}`);
-  }
+  };
   return (
-    <Paper sx={{ width:1350 ,overflow:"hidden", ml: 10, mt: 6 }}>
+    <Paper sx={{ width: "89%", overflow: "hidden", ml: 10, mt: 6 }}>
       <TableContainer sx={{ height: 587 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -75,11 +85,23 @@ const ProjectTable = () => {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
-                  <TableRow sx = {{textDecoration:"none"}}  hover role="checkbox" tabIndex={-1} key={row.key}>
+                  <TableRow
+                    sx={{ textDecoration: "none" }}
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={row.key}
+                  >
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
-                        <TableCell key={column.id} align={column.align} onClick ={() => {handleLink(row.name)}}>
+                        <TableCell
+                          key={column.id}
+                          align={column.align}
+                          onClick={() => {
+                            handleLink(row.name);
+                          }}
+                        >
                           {column.format && typeof value === "number"
                             ? column.format(value)
                             : value}
@@ -103,6 +125,6 @@ const ProjectTable = () => {
       />
     </Paper>
   );
-}
+};
 
 export default ProjectTable;
