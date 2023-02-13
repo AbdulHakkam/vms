@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import "./NavBar.css";
-import { Button } from "@mui/material";
+import { Button, Divider, Typography } from "@mui/material";
 import { useAuthContext } from "@asgardeo/auth-react";
+import { Box } from "@mui/system";
 const NavBar = () => {
   const buttonStyle = {
     bgcolor: "white",
@@ -10,29 +10,37 @@ const NavBar = () => {
     width: 200,
     boxShadow: 1,
     textTransform: "none",
+    mb: "40px",
   };
   const { state, signIn, signOut } = useAuthContext();
 
   return (
-    <nav className="navContainer">
-      <h1>VMS</h1>
-      <hr style={{ color: "white", marginBottom: "4em" }}></hr>
-      <ul>
+    <Box
+      sx={{
+        backgroundColor: "#fd7e14",
+        width: "14%",
+        height: "100vh",
+        position: "fixed",
+      }}
+    >
+      <Typography
+        sx={{
+          textAlign: "center",
+          mt: "20px",
+          color: "white",
+          fontSize: "35px",
+          mb: "15px",
+        }}
+      >
+        VMS
+      </Typography>
+      <Divider sx={{ backgroundColor: "white", marginBottom: "4em" }}></Divider>
+      <Box sx={{ textAlign: "center" }}>
         <Button sx={buttonStyle} component={Link} to={"/"}>
           Projects
         </Button>
-      </ul>
-      <ul>
-        <Button sx={buttonStyle} component={Link} to={"/"}>
-          Scanners
-        </Button>
-      </ul>
-      <ul>
-        <Button sx={buttonStyle} component={Link} to={"/"}>
-          Upload
-        </Button>
-      </ul>
-      <ul className="logOutButton">
+      </Box>
+      <Box sx={{ textAlign: "center" }}>
         {state.isAuthenticated ? (
           <Button sx={buttonStyle} onClick={() => signOut()}>
             Sign Out
@@ -42,8 +50,8 @@ const NavBar = () => {
             Sign In
           </Button>
         )}
-      </ul>
-    </nav>
+      </Box>
+    </Box>
   );
 };
 

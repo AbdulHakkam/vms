@@ -32,7 +32,7 @@ const NewProjects = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
-    <div>
+    <Box>
       <Button sx={buttonStyle} onClick={handleOpen}>
         New Project
       </Button>
@@ -50,7 +50,7 @@ const NewProjects = () => {
           <Button sx={buttonStyle} onClick= {handleClose}>Create</Button>
         </Box>
       </Modal>
-    </div>
+    </Box>
   );
 };
 export default NewProjects;

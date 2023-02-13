@@ -3,6 +3,7 @@ import { Box } from "@mui/system";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import Details from "./Components/Details";
+import ReportTable from "./Components/ReportTable";
 
 const ProjectDetails = () => {
   const { projectTitle } = useParams();
@@ -84,7 +85,7 @@ const ProjectDetails = () => {
           {projectTitle}
         </Typography>
       </Box>
-      <Divider sx={{ width: "101%", pb: 4 }} />
+      <Divider sx={{ width: "101%", pb: 2.5 }} />
       <Typography sx={{ fontSize: 25, ml: 9, mt: 7 }}>Overview</Typography>
       <Box
         sx={{
@@ -126,7 +127,7 @@ const ProjectDetails = () => {
         {render === "Details" ? (
           <Details reportData={reportData} />
         ) : (
-          <h1>Scan Reports</h1>
+          <ReportTable/>
         )}
       </Box>
     </Box>

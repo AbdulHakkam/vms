@@ -17,7 +17,7 @@ const Projects = (props) => {
           <SearchIcon sx={{ mt: 1, ml: 1, mr: 13 }} />
         </Box>
       </Box>
-      <Divider sx={{ width: "101%", pb: 4 }} />
+      <Divider sx={{ width: "101%", pb: 2.5 }} />
       <NewProjects />
       <ProjectTable className="projectTable" />
     </Box>
