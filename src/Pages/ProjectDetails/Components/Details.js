@@ -10,7 +10,7 @@ const Details = (props) => {
 
   return (
     <Box>
-      <Typography sx={{ fontSize: 20, mt: 1.5, ml: 1.5 }}>
+      <Typography sx={{ fontSize: 15, mt: 1.5, ml: 1.5 }}>
         Description :
       </Typography>
       <Box sx={{ display: "flex" }}>
@@ -23,7 +23,7 @@ const Details = (props) => {
             borderRadius: 0.5,
           }}
         >
-          <Typography sx={{ margin: 1 }}>
+          <Typography sx={{ margin: 1,fontSize:13 }}>
             It has roots in a piece of classical Latin literature from 45 BC,
             making it over 2000 years old. Richard McClintock, a Latin professor
             at Hampden-Sydney College in Virginia, looked up one of the more
@@ -48,7 +48,7 @@ const Details = (props) => {
         >
           {projectDetails.map((row) => {
             return (
-              <Typography key={row.field} sx={{ margin: 1 }}>
+              <Typography key={row.field} sx={{ margin: 1 ,fontSize:13}}>
                 {row.field} : {row.value}
               </Typography>
             );
@@ -56,7 +56,7 @@ const Details = (props) => {
         </Box>
       </Box>
       <Divider sx={{ width: "100%", mt: 2 }} />
-      <Typography sx={{ fontSize: 20, mt: 1.5, ml: 1.5 }}>
+      <Typography sx={{ fontSize: 15, mt: 1.5, ml: 1.5 }}>
         Latest scan reports :
       </Typography>
       <LatestReportTable reportData = {props.reportData}/>

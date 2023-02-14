@@ -1,8 +1,12 @@
 import NewProjects from "./Components/NewProjects";
 import ProjectTable from "./Components/ProjectTable";
 import { TextField, Divider, Box, Typography } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 const Projects = (props) => {
+  const handleKeyPress = (event) =>{
+    if(event.code==="Enter"){
+      console.log(event.target.value);
+    }
+  }
   return (
     <Box sx={{ position: "absolute", width: "85%", ml: "14%" }}>
       <Box sx={{ display: "flex" }}>
@@ -12,9 +16,9 @@ const Projects = (props) => {
             label="Title"
             variant="outlined"
             size="small"
-            sx={{ mr: 0 }}
+            sx={{mr:13}}
+            onKeyPress ={handleKeyPress}
           />
-          <SearchIcon sx={{ mt: 1, ml: 1, mr: 13 }} />
         </Box>
       </Box>
       <Divider sx={{ width: "101%", pb: 2.5 }} />

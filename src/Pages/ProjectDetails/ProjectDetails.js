@@ -1,4 +1,5 @@
-import { Button, Divider, Typography } from "@mui/material";
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import { Button, Divider, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
@@ -76,6 +77,20 @@ const ProjectDetails = () => {
       lastUpdated: "20-20-20",
       status: "pending",
     },
+    {
+      name: "report 8",
+      type: "static",
+      createdOn: "20-20-20",
+      lastUpdated: "20-20-20",
+      status: "pending",
+    },
+    {
+      name: "report 9",
+      type: "static",
+      createdOn: "20-20-20",
+      lastUpdated: "20-20-20",
+      status: "pending",
+    },
   ];
 
   return (
@@ -127,7 +142,16 @@ const ProjectDetails = () => {
         {render === "Details" ? (
           <Details reportData={reportData} />
         ) : (
-          <ReportTable/>
+          <Box>
+            <Box sx={{ display: "flex", ml: "72%", mt: 2 }}>
+              <Typography sx={{ mt: 1, mr: 2, fontSize: 17 }}>
+                Search
+              </Typography>
+              <TextField label="Title" variant="outlined" size="small" />
+             <FilterAltIcon sx={{color:"orange",mt:1,mr:1,ml:1}}/>
+            </Box>
+            <ReportTable reportData={reportData} />
+          </Box>
         )}
       </Box>
     </Box>

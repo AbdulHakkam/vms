@@ -49,7 +49,7 @@ const LatestReportTable = (props) => {
                   {columns.map((column) => {
                     const value = row[column.id];
                     return (
-                      <TableCell key={column.id} align={column.align}>
+                      <TableCell key={column.id} align={column.align} sx ={{p:"10px 10px 10px 15px"}}>
                         {column.format && typeof value === "number"
                           ? column.format(value)
                           : value}
