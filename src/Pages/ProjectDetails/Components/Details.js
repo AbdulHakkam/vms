@@ -56,7 +56,7 @@ const Details = (props) => {
         </Box>
       </Box>
       <Divider sx={{ width: "100%", mt: 2 }} />
-      <Typography sx={{ fontSize: 15, mt: 1.5, ml: 1.5 }}>
+      <Typography sx={{ fontSize: 20, mt: 21, ml: 1.5 }}>
         Latest scan reports :
       </Typography>
       <LatestReportTable reportData = {props.reportData}/>

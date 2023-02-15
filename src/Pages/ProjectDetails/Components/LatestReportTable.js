@@ -17,7 +17,7 @@ const LatestReportTable = (props) => {
   const rows = props.reportData;
 
   return (
-    <Paper sx={{ width: "100%", overflow: "hidden", mt: 3,height:375,borderRadius:0 }}>
+    <Paper sx={{ width: "100%", overflow: "hidden", height:300,borderRadius:0 }}>
       <TableContainer>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>

@@ -64,7 +64,7 @@ const ReportTable = (props) => {
                     hover
                     role="checkbox"
                     tabIndex={-1}
-                    key={row.key}
+                    key={row.name}
                   >
                     {columns.map((column) => {
                       const value = row[column.id];

@@ -1,4 +1,4 @@
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { Button, Divider, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
@@ -143,12 +143,21 @@ const ProjectDetails = () => {
           <Details reportData={reportData} />
         ) : (
           <Box>
-            <Box sx={{ display: "flex", ml: "72%", mt: 2 }}>
-              <Typography sx={{ mt: 1, mr: 2, fontSize: 17 }}>
+            <Box sx={{ display: "flex", ml: "75%", mt: 2 }}>
+              <Typography sx={{ mt: 0.5, mr: 2, fontSize: 17 }}>
                 Search
               </Typography>
-              <TextField label="Title" variant="outlined" size="small" />
-             <FilterAltIcon sx={{color:"orange",mt:1,mr:1,ml:1}}/>
+              <TextField
+                variant="outlined"
+                size="small"
+                sx={{ width: "200px"}}
+                inputProps={{
+                  style: {
+                    height: "15px",
+                  },
+                }}
+              />
+              <FilterAltIcon sx={{ color: "orange", mt: 0.5, mr: 1, ml: 1 }} />
             </Box>
             <ReportTable reportData={reportData} />
           </Box>
