@@ -17,10 +17,8 @@ root.render(
       disableTrySignInSilently: false,
     }}
   >
-    <React.StrictMode>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </React.StrictMode>
   </AuthProvider>
 );

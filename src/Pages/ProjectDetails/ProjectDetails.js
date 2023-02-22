@@ -1,5 +1,11 @@
-import FilterAltIcon from "@mui/icons-material/FilterAlt";
-import { Button, Divider, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  Divider,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
@@ -28,7 +34,7 @@ const ProjectDetails = () => {
     setRender(event.target.value);
   };
   const reportData = [
-    {
+    { id : "report 1",
       name: "report 1",
       type: "static",
       createdOn: "20-20-20",
@@ -36,6 +42,7 @@ const ProjectDetails = () => {
       status: "pending",
     },
     {
+      id : "report 2",
       name: "report 2",
       type: "static",
       createdOn: "20-20-20",
@@ -43,13 +50,14 @@ const ProjectDetails = () => {
       status: "pending",
     },
     {
+      id : "report 3",
       name: "report 3",
       type: "static",
       createdOn: "20-20-20",
       lastUpdated: "20-20-20",
       status: "pending",
     },
-    {
+    {id : "report 4",
       name: "report 4",
       type: "static",
       createdOn: "20-20-20",
@@ -57,6 +65,7 @@ const ProjectDetails = () => {
       status: "pending",
     },
     {
+      id : "report 5",
       name: "report 5",
       type: "static",
       createdOn: "20-20-20",
@@ -64,6 +73,7 @@ const ProjectDetails = () => {
       status: "pending",
     },
     {
+      id : "report 6",
       name: "report 6",
       type: "static",
       createdOn: "20-20-20",
@@ -71,6 +81,7 @@ const ProjectDetails = () => {
       status: "pending",
     },
     {
+      id : "report 7",
       name: "report 7",
       type: "static",
       createdOn: "20-20-20",
@@ -78,6 +89,7 @@ const ProjectDetails = () => {
       status: "pending",
     },
     {
+      id : "report 8",
       name: "report 8",
       type: "static",
       createdOn: "20-20-20",
@@ -85,6 +97,7 @@ const ProjectDetails = () => {
       status: "pending",
     },
     {
+      id : "report 9",
       name: "report 9",
       type: "static",
       createdOn: "20-20-20",
@@ -150,14 +163,22 @@ const ProjectDetails = () => {
               <TextField
                 variant="outlined"
                 size="small"
-                sx={{ width: "200px"}}
+                sx={{ width: "200px" }}
                 inputProps={{
                   style: {
                     height: "15px",
                   },
                 }}
               />
-              <FilterAltIcon sx={{ color: "orange", mt: 0.5, mr: 1, ml: 1 }} />
+              <Select
+                sx={{ width: "80px", height: "33px", fontSize: 10, ml: 1 }}
+                value ={"name"}
+              >
+                <MenuItem sx={{ fontSize: "10px" }} value={"name"}>
+                  Name
+                </MenuItem>
+                <MenuItem sx={{ fontSize: "10px" }} value={"type"}>Type</MenuItem>
+              </Select>
             </Box>
             <ReportTable reportData={reportData} />
           </Box>
