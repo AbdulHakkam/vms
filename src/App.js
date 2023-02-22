@@ -9,9 +9,6 @@ import useDeepCompareEffect from "use-deep-compare-effect";
 //import { useAuthContext } from "@asgardeo/auth-react";
 
 function App() {
-  const endpoint = "https://vms-db.documents.azure.com:443/";
-  const key =
-    "ATAyMZfJHzEABY4ufHicQ6o1BcncOH3TBHKJE1ioBhowFjW29qDTmgxrUpU14aO4KlcgLMDk4hSHACDbU76MVA==";
   const client = new CosmosClient({ endpoint, key });
   const [container, setContainer] = useState({});
   const [rows, setRows] = useState([]);
