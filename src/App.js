@@ -3,15 +3,25 @@ import Projects from "./Pages/Projects/Projects";
 import NavBar from "./NavBar/NavBar";
 import "./App.css";
 import ProjectDetails from "./Pages/ProjectDetails/ProjectDetails";
+import ReportDetails from "./Pages/ReportDetails/ReportDetails";
 import { CosmosClient } from "@azure/cosmos";
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import useDeepCompareEffect from "use-deep-compare-effect";
+import Loading from "./UI/Loading";
 //import { useAuthContext } from "@asgardeo/auth-react";
 
-function App() {
+export const uiContext = createContext();
+
+const App = () => {
   const client = new CosmosClient({ endpoint, key });
   const [container, setContainer] = useState({});
   const [rows, setRows] = useState([]);
+  const [refresh, setRefresh] = useState(true);
+  const [loading, setLoading] = useState(true);
+
+  const handleLoading = (flag) => {
+    setLoading(flag);
+  };
 
   useEffect(() => {
     const fetchContainer = async () => {
@@ -25,41 +35,42 @@ function App() {
     fetchContainer();
   }, []);
   useDeepCompareEffect(() => {
-    const fetchRow = async (id) => {
-      container.items
-        .query(`SELECT COUNT(c.id) from c WHERE c.id="${id}"`)
-        .fetchAll()
-        .then((response) => {
-          const assetInfo = id.split("-");
-          const row = {
-            asset: assetInfo[0],
-            assetVersion: assetInfo[1],
-            id: id,
-            reportCount: response.resources[0].$1,
-          };
-          setRows((oldRows) => [...oldRows, row]);
-        });
-    };
-
     const fetchProjects = async () => {
       container.items
-        .query("SELECT DISTINCT c.id from c")
+        .query("SELECT c.id from c")
         .fetchAll()
         .then((response) => {
-          const projectList = response.resources.map((project) => {
-            fetchRow(project.id);
+          setRows([]);
+          const unique = response.resources
+            .map((item) => item.id)
+            .filter((value, index, self) => self.indexOf(value) === index);
+
+          unique.forEach((id) => {
+            const assetInfo = id.split("-");
+            const occurunces = response.resources.filter(item=> {return item.id==id})
+            const row = {
+              asset: assetInfo[0],
+              assetVersion: assetInfo[1],
+              reportCount:occurunces.length,
+              id:id,
+            };
+            setRows((oldRows) => [...oldRows, row]);
+            setRefresh(false);
           });
+          setLoading(false);
         });
     };
-    if (Object.keys(container).length !== 0) {
+    if (Object.keys(container).length !== 0 && refresh) {
+      handleLoading(true);
       fetchProjects();
     }
-  }, [container]);
+  }, [container, refresh]);
 
   // const { state } = useAuthContext();
   return (
     <div className="fullLayout">
       <NavBar />
+      {loading === true && <Loading />};
       <div>
         {/* {state.isAuthenticated === false && (
           <Error/>
@@ -70,16 +81,25 @@ function App() {
             <Route path="/Contact" element={<Contact />} />
           </Routes>
         )} */}
-        <Routes>
-          <Route path="/" element={<Projects client={client} rows={rows} />} />
-          <Route
-            path="/ProjectDetails/:projectTitle"
-            element={<ProjectDetails client={container}/>}
-          />
-        </Routes>
+        <uiContext.Provider value={handleLoading}>
+          <Routes>
+            <Route
+              path="/"
+              element={<Projects rows={rows} handleRefresh={setRefresh} />}
+            />
+            <Route
+              path="/ProjectDetails/:projectTitle"
+              element={<ProjectDetails container={container} />}
+            />
+            <Route
+              path="/ReportDetails/:reportInfo"
+              element={<ReportDetails container={container} />}
+            />
+          </Routes>
+        </uiContext.Provider>
       </div>
     </div>
   );
-}
+};
 
 export default App;

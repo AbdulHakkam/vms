@@ -7,13 +7,49 @@ import {
   Typography,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { useParams } from "react-router-dom";
 import Details from "./Components/Details";
 import ReportTable from "./Components/ReportTable";
+import useDeepCompareEffect from "use-deep-compare-effect";
+import UploadReport from "./Components/UploadReport";
+import { uiContext } from "../../App";
 
-const ProjectDetails = () => {
+const ProjectDetails = (props) => {
+  const handleLoading = useContext(uiContext);
   const { projectTitle } = useParams();
+  const [reportData, setReportData] = useState([]);
+  useDeepCompareEffect(() => {
+    const fetchRows = async()=>{
+      handleLoading(true);
+      props.container.items
+      .query(
+        `SELECT ARRAY_LENGTH(c.vulnerabilities),c.created_date,c.scanner_type,c.team,c.tags,c.scanner_name,c.status_changed_on,c.reportID from c WHERE c.id="${projectTitle}"`
+      )
+      .fetchAll()
+      .then((response) => {
+        const rowArr = [];
+        response.resources.forEach((item) => {
+          const row = {
+            id: projectTitle + "-" + item.reportID,
+            reportId: item.reportID,
+            scannerType: item.scanner_type,
+            lastUpdated: item.status_changed_on,
+            createdOn: item.created_date,
+            issueCount: item.$1,
+          };
+          rowArr.push(row);
+        });
+        setReportData(rowArr);
+        handleLoading(false);
+      });
+
+    }
+    if (Object.keys(props.container).length !== 0) {
+      fetchRows();
+    }
+  }, [props.container]);
+
   const [render, setRender] = useState("Details");
   const [buttonColor, setButtonColor] = useState({
     Details: "#fd7e14",
@@ -33,88 +69,19 @@ const ProjectDetails = () => {
     }
     setRender(event.target.value);
   };
-  const reportData = [
-    { id : "report 1",
-      name: "report 1",
-      type: "static",
-      createdOn: "20-20-20",
-      lastUpdated: "20-20-20",
-      status: "pending",
-    },
-    {
-      id : "report 2",
-      name: "report 2",
-      type: "static",
-      createdOn: "20-20-20",
-      lastUpdated: "20-20-20",
-      status: "pending",
-    },
-    {
-      id : "report 3",
-      name: "report 3",
-      type: "static",
-      createdOn: "20-20-20",
-      lastUpdated: "20-20-20",
-      status: "pending",
-    },
-    {id : "report 4",
-      name: "report 4",
-      type: "static",
-      createdOn: "20-20-20",
-      lastUpdated: "20-20-20",
-      status: "pending",
-    },
-    {
-      id : "report 5",
-      name: "report 5",
-      type: "static",
-      createdOn: "20-20-20",
-      lastUpdated: "20-20-20",
-      status: "pending",
-    },
-    {
-      id : "report 6",
-      name: "report 6",
-      type: "static",
-      createdOn: "20-20-20",
-      lastUpdated: "20-20-20",
-      status: "pending",
-    },
-    {
-      id : "report 7",
-      name: "report 7",
-      type: "static",
-      createdOn: "20-20-20",
-      lastUpdated: "20-20-20",
-      status: "pending",
-    },
-    {
-      id : "report 8",
-      name: "report 8",
-      type: "static",
-      createdOn: "20-20-20",
-      lastUpdated: "20-20-20",
-      status: "pending",
-    },
-    {
-      id : "report 9",
-      name: "report 9",
-      type: "static",
-      createdOn: "20-20-20",
-      lastUpdated: "20-20-20",
-      status: "pending",
-    },
-  ];
 
   return (
     <Box sx={{ position: "absolute", width: "85%", left: 0, ml: "14%" }}>
-      <Box className="header">
+      <Box>
         <Typography sx={{ ml: 10, mt: 2, fontSize: 35 }}>
           {projectTitle}
         </Typography>
       </Box>
       <Divider sx={{ width: "101%", pb: 2.5 }} />
-      <Typography sx={{ fontSize: 25, ml: 9, mt: 7 }}>Overview</Typography>
+      <Box sx={{display:"flex",width:"100%"}}>
+        <Typography sx={{ fontSize: 25, ml: 9, mt: 7 }}>Overview</Typography>
+        <UploadReport />
+      </Box>
       <Box
         sx={{
           width: "90%",
@@ -172,12 +139,14 @@ const ProjectDetails = () => {
               />
               <Select
                 sx={{ width: "80px", height: "33px", fontSize: 10, ml: 1 }}
-                value ={"name"}
+                value={"name"}
               >
                 <MenuItem sx={{ fontSize: "10px" }} value={"name"}>
                   Name
                 </MenuItem>
-                <MenuItem sx={{ fontSize: "10px" }} value={"type"}>Type</MenuItem>
+                <MenuItem sx={{ fontSize: "10px" }} value={"type"}>
+                  Type
+                </MenuItem>
               </Select>
             </Box>
             <ReportTable reportData={reportData} />

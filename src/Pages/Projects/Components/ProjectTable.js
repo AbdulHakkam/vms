@@ -8,7 +8,7 @@ const columns = [
 
 const ProjectTable = (props) => {
   const rows = props.rows;
-  const tableStyle = { width: "89%", overflow: "hidden", ml: 10, mt: 6 };
+  const tableStyle = { width: "88%", overflow: "hidden", ml: 10, mt: 6 };
   const containerStyle = {height:"587px"};
   return (
     <CommonTable
@@ -18,6 +18,8 @@ const ProjectTable = (props) => {
       height={587}
       cellStyle ={{ p: "10px 10px 10px 15px" }}
       containerStyle = {containerStyle}
+      link={1}
+      path={"ProjectDetails"}
     />
   );
 };

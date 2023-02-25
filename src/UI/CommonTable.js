@@ -23,7 +23,9 @@ const CommonTable = (props) => {
   };
   const navigate = useNavigate();
   const handleLink = (link) => {
-    navigate(`/ProjectDetails/${link}`);
+    if(props.link===1){
+      navigate(`/${props.path}/${link}`);
+    }
   };
   const columns = props.columns;
   const rows = props.rows;
