@@ -1,4 +1,3 @@
-import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import CircularProgress from "@mui/material/CircularProgress";
 const Loading = () => {
@@ -10,7 +9,7 @@ const Loading = () => {
         backgroundColor: "rgba(189, 188, 188, 0.45)",
         width: "100%",
         height: "100%",
-        zIndex: 10,
+        zIndex: 200,
       }}
     >
       <Box sx={{ color: "orange", mt: "25%", ml: "50%" }}>

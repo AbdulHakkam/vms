@@ -13,6 +13,9 @@ import Loading from "./UI/Loading";
 export const uiContext = createContext();
 
 const App = () => {
+  const endpoint = "";
+  const key =
+    "";
   const client = new CosmosClient({ endpoint, key });
   const [container, setContainer] = useState({});
   const [rows, setRows] = useState([]);
@@ -47,12 +50,14 @@ const App = () => {
 
           unique.forEach((id) => {
             const assetInfo = id.split("-");
-            const occurunces = response.resources.filter(item=> {return item.id==id})
+            const occurunces = response.resources.filter((item) => {
+              return item.id === id;
+            });
             const row = {
               asset: assetInfo[0],
               assetVersion: assetInfo[1],
-              reportCount:occurunces.length,
-              id:id,
+              reportCount: occurunces.length,
+              id: id,
             };
             setRows((oldRows) => [...oldRows, row]);
             setRefresh(false);

@@ -94,6 +94,7 @@ const NewProjects = (props) => {
   });
   const submitItem = () => {
     handleLoading(true);
+    handleClose();
     axios
       .post(`http://localhost:9001/parse?${params}`, formData.scanReport)
       .then(() => {
@@ -158,7 +159,11 @@ const NewProjects = (props) => {
             type={"file"}
             inputProps={{ accept: ".json, .xml" }}
             onChange={onChange}
-            sx={{ mb: 2 }}
+            sx={{mb:2,"& .css-1x51dt5-MuiInputBase-input-MuiInput-input": {
+              fontSize: "13px",
+              width:"290px",
+              mb:1
+            },}}
           ></Input>
           <Typography sx={fontStyle}>Report Reference : </Typography>
           <TextField
